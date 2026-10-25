@@ -1,0 +1,796 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 20
+Design : spi_controller_core
+Version: V-2023.12-SP3
+Date   : Fri Oct 16 00:49:27 2026
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[15] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U80/ZN (OAI211_X1)            0.06       4.59 f
+  u_spi_regs/prdata[15] (spi_regs)         0.00       4.59 f
+  prdata[15] (out)                         0.00       4.60 f
+  data arrival time                                   4.60
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (MET)                                         1.10
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[13] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U76/ZN (OAI211_X1)            0.06       4.59 f
+  u_spi_regs/prdata[13] (spi_regs)         0.00       4.59 f
+  prdata[13] (out)                         0.00       4.60 f
+  data arrival time                                   4.60
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (MET)                                         1.10
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[12] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U74/ZN (OAI211_X1)            0.06       4.59 f
+  u_spi_regs/prdata[12] (spi_regs)         0.00       4.59 f
+  prdata[12] (out)                         0.00       4.60 f
+  data arrival time                                   4.60
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (MET)                                         1.10
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[11] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U72/ZN (OAI211_X1)            0.06       4.59 f
+  u_spi_regs/prdata[11] (spi_regs)         0.00       4.59 f
+  prdata[11] (out)                         0.00       4.60 f
+  data arrival time                                   4.60
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (MET)                                         1.10
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[10] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U70/ZN (OAI211_X1)            0.06       4.59 f
+  u_spi_regs/prdata[10] (spi_regs)         0.00       4.59 f
+  prdata[10] (out)                         0.00       4.60 f
+  data arrival time                                   4.60
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (MET)                                         1.10
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[9] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U68/ZN (OAI211_X1)            0.06       4.59 f
+  u_spi_regs/prdata[9] (spi_regs)          0.00       4.59 f
+  prdata[9] (out)                          0.00       4.60 f
+  data arrival time                                   4.60
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (MET)                                         1.10
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[2] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U55/ZN (OAI211_X1)            0.06       4.59 f
+  u_spi_regs/prdata[2] (spi_regs)          0.00       4.59 f
+  prdata[2] (out)                          0.00       4.60 f
+  data arrival time                                   4.60
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (MET)                                         1.10
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[0] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U48/ZN (OAI211_X1)            0.06       4.59 f
+  u_spi_regs/prdata[0] (spi_regs)          0.00       4.59 f
+  prdata[0] (out)                          0.00       4.60 f
+  data arrival time                                   4.60
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.60
+  -----------------------------------------------------------
+  slack (MET)                                         1.10
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[1] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U53/ZN (NAND3_X1)             0.05       4.58 f
+  u_spi_regs/prdata[1] (spi_regs)          0.00       4.58 f
+  prdata[1] (out)                          0.00       4.58 f
+  data arrival time                                   4.58
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.58
+  -----------------------------------------------------------
+  slack (MET)                                         1.12
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[7] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U63/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[7] (spi_regs)          0.00       4.57 f
+  prdata[7] (out)                          0.00       4.58 f
+  data arrival time                                   4.58
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.58
+  -----------------------------------------------------------
+  slack (MET)                                         1.12
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[6] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U61/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[6] (spi_regs)          0.00       4.57 f
+  prdata[6] (out)                          0.00       4.58 f
+  data arrival time                                   4.58
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.58
+  -----------------------------------------------------------
+  slack (MET)                                         1.12
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[5] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U59/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[5] (spi_regs)          0.00       4.57 f
+  prdata[5] (out)                          0.00       4.58 f
+  data arrival time                                   4.58
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.58
+  -----------------------------------------------------------
+  slack (MET)                                         1.12
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[3] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U57/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[3] (spi_regs)          0.00       4.57 f
+  prdata[3] (out)                          0.00       4.58 f
+  data arrival time                                   4.58
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.58
+  -----------------------------------------------------------
+  slack (MET)                                         1.12
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[26] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U98/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[26] (spi_regs)         0.00       4.57 f
+  prdata[26] (out)                         0.00       4.57 f
+  data arrival time                                   4.57
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.57
+  -----------------------------------------------------------
+  slack (MET)                                         1.13
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[25] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U96/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[25] (spi_regs)         0.00       4.57 f
+  prdata[25] (out)                         0.00       4.57 f
+  data arrival time                                   4.57
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.57
+  -----------------------------------------------------------
+  slack (MET)                                         1.13
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[23] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U93/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[23] (spi_regs)         0.00       4.57 f
+  prdata[23] (out)                         0.00       4.57 f
+  data arrival time                                   4.57
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.57
+  -----------------------------------------------------------
+  slack (MET)                                         1.13
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[21] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U90/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[21] (spi_regs)         0.00       4.57 f
+  prdata[21] (out)                         0.00       4.57 f
+  data arrival time                                   4.57
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.57
+  -----------------------------------------------------------
+  slack (MET)                                         1.13
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[19] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U87/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[19] (spi_regs)         0.00       4.57 f
+  prdata[19] (out)                         0.00       4.57 f
+  data arrival time                                   4.57
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.57
+  -----------------------------------------------------------
+  slack (MET)                                         1.13
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[18] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U85/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[18] (spi_regs)         0.00       4.57 f
+  prdata[18] (out)                         0.00       4.57 f
+  data arrival time                                   4.57
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.57
+  -----------------------------------------------------------
+  slack (MET)                                         1.13
+
+
+  Startpoint: paddr[14] (input port clocked by pclk)
+  Endpoint: prdata[16] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_controller_core
+                     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock pclk (rise edge)                   0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     4.00       4.00 f
+  paddr[14] (in)                           0.00       4.00 f
+  u_spi_regs/paddr[14] (spi_regs)          0.00       4.00 f
+  u_spi_regs/U14/ZN (NOR4_X1)              0.14       4.14 r
+  u_spi_regs/U17/ZN (NAND4_X1)             0.05       4.20 f
+  u_spi_regs/U18/ZN (NOR4_X1)              0.10       4.29 r
+  u_spi_regs/U19/ZN (NAND3_X1)             0.06       4.35 f
+  u_spi_regs/U47/ZN (NAND2_X1)             0.17       4.53 r
+  u_spi_regs/U82/ZN (NAND2_X1)             0.04       4.57 f
+  u_spi_regs/prdata[16] (spi_regs)         0.00       4.57 f
+  prdata[16] (out)                         0.00       4.57 f
+  data arrival time                                   4.57
+
+  clock pclk (rise edge)                  10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  clock uncertainty                       -0.30       9.70
+  output external delay                   -4.00       5.70
+  data required time                                  5.70
+  -----------------------------------------------------------
+  data required time                                  5.70
+  data arrival time                                  -4.57
+  -----------------------------------------------------------
+  slack (MET)                                         1.13
+
+
+1

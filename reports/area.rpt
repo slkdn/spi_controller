@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : spi_controller_core
+Version: V-2023.12-SP3
+Date   : Fri Oct 16 00:49:27 2026
+****************************************
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /proj/project/workarea/user37/spi_controller/lib/NanGate45-Synopsys-Enablement/db/NangateOpenCellLibrary_typical.db)
+
+Number of ports:                          378
+Number of nets:                          1017
+Number of cells:                          650
+Number of combinational cells:            477
+Number of sequential cells:               167
+Number of macros/black boxes:               0
+Number of buf/inv:                        126
+Number of references:                       6
+
+Combinational area:                507.262006
+Buf/Inv area:                       67.032001
+Noncombinational area:             824.600002
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  1331.862008
+Total area:                 undefined
+1

@@ -1,0 +1,58 @@
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : spi_controller_core
+Version: V-2023.12-SP3
+Date   : Fri Oct 16 00:49:27 2026
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /proj/project/workarea/user37/spi_controller/lib/NanGate45-Synopsys-Enablement/db/NangateOpenCellLibrary_typical.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+spi_controller_core    5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  = 182.5142 uW   (98%)
+  Net Switching Power  =   3.7921 uW    (2%)
+                         ---------
+Total Dynamic Power    = 186.3063 uW  (100%)
+
+Cell Leakage Power     =  24.6768 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network    178.8493            0.0000            0.0000          178.8493  (  84.77%)  i
+register           1.2022            0.2471        1.3060e+04           14.5097  (   6.88%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      2.4628            3.5450        1.1616e+04           17.6242  (   8.35%)
+--------------------------------------------------------------------------------------------------
+Total            182.5143 uW         3.7921 uW     2.4677e+04 nW       210.9832 uW
+1

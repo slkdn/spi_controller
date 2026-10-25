@@ -1,0 +1,2 @@
++tree spi_controller_tb.u_master_top
++tree spi_controller_tb.u_slave_top

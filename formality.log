@@ -1,0 +1,1099 @@
+
+                                 Formality (R)
+
+               Version V-2023.12-SP3 for linux64 - Apr 13, 2024 
+
+                    Copyright (c) 1988 - 2024 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+Build: 8868332
+Hostname: sv02
+Current time: Fri Oct 16 00:56:15 2026
+
+Loading db file '/proj/eda_tools/synopsys/fm/V-2023.12-SP3/libraries/syn/gtech.db'
+
+Script: run_formality.tcl
+
+Information: Term was not able to be set up using xterm-256color . Using "xterm" by default instead. (CLE-10)
+# RTL-to-gate equivalence for spi_controller_core.
+# Run with: fm_shell -file formal/run_formality.tcl
+set ROOT [file normalize [file join [file dirname [info script]] ..]]
+/proj/project/workarea/user37/spi_controller
+set RTL_DIR [file join $ROOT rtl]
+/proj/project/workarea/user37/spi_controller/rtl
+set OUT_DIR [file join $ROOT output]
+/proj/project/workarea/user37/spi_controller/output
+set DB_FILE [file join $ROOT lib NanGate45-Synopsys-Enablement db NangateOpenCellLibrary_typical.db]
+/proj/project/workarea/user37/spi_controller/lib/NanGate45-Synopsys-Enablement/db/NangateOpenCellLibrary_typical.db
+set SVF_FILE [file join $OUT_DIR spi_controller_core.svf]
+/proj/project/workarea/user37/spi_controller/output/spi_controller_core.svf
+set NETLIST [file join $OUT_DIR spi_controller_core_netlist.v]
+/proj/project/workarea/user37/spi_controller/output/spi_controller_core_netlist.v
+# Use DC's automated setup and optimization guidance when available.
+set_app_var synopsys_auto_setup true
+true
+if {![file exists $SVF_FILE]} {
+    error "SVF not found: $SVF_FILE. Re-run DC with set_svf before compile_ultra."
+}
+set_svf $SVF_FILE
+SVF set to '/proj/project/workarea/user37/spi_controller/output/spi_controller_core.svf'.
+1
+read_db -technology_library $DB_FILE
+Loading db file '/proj/project/workarea/user37/spi_controller/lib/NanGate45-Synopsys-Enablement/db/NangateOpenCellLibrary_typical.db'
+1
+# Reference: the same RTL hierarchy and top used by synth/run_synth.tcl.
+read_sverilog -container r -libname WORK [list \
+    [file join $RTL_DIR spi_clk_gen.sv] \
+    [file join $RTL_DIR spi_master.sv] \
+    [file join $RTL_DIR spi_slave.sv] \
+    [file join $RTL_DIR spi_regs.sv] \
+    [file join $RTL_DIR spi_controller_core.sv] \
+]
+Loading verilog file '/proj/project/workarea/user37/spi_controller/rtl/spi_clk_gen.sv'
+Loading verilog file '/proj/project/workarea/user37/spi_controller/rtl/spi_master.sv'
+Loading verilog file '/proj/project/workarea/user37/spi_controller/rtl/spi_slave.sv'
+Loading verilog file '/proj/project/workarea/user37/spi_controller/rtl/spi_regs.sv'
+Loading verilog file '/proj/project/workarea/user37/spi_controller/rtl/spi_controller_core.sv'
+Current container set to 'r'
+1
+set_top r:/WORK/spi_controller_core
+Setting top design to 'r:/WORK/spi_controller_core'
+Status:   Elaborating design spi_controller_core   ...  
+Status:   Elaborating design spi_regs   ...  
+Status:   Elaborating design spi_master  DIV_WIDTH=8 ...  
+Information: Created design named 'spi_master_DIV_WIDTH8'. (FE-LINK-13)
+Status:   Elaborating design spi_clk_gen  DIV_WIDTH=8 ...  
+Information: Created design named 'spi_clk_gen_DIV_WIDTH8'. (FE-LINK-13)
+Status:   Elaborating design spi_slave   ...  
+Status:  Implementing inferred operators...
+
+************ Library Checking Summary ************
+Warning:  92 unlinked power cell(s) with no power down functions on outputs.
+Warning:  29 unlinked power cell(s) with no power down function on an ff or latch.
+        Use 'report_libraries -defects all' for more details.
+**************************************************
+
+Top design successfully set to 'r:/WORK/spi_controller_core'
+Reference design set to 'r:/WORK/spi_controller_core'
+1
+# Implementation: mapped gate-level netlist.
+read_verilog -container i -libname WORK -netlist $NETLIST
+Loading verilog file '/proj/project/workarea/user37/spi_controller/output/spi_controller_core_netlist.v'
+Current container set to 'i'
+1
+set_top i:/WORK/spi_controller_core
+Setting top design to 'i:/WORK/spi_controller_core'
+Status:  Implementing inferred operators...
+
+************ Library Checking Summary ************
+Warning:  92 unlinked power cell(s) with no power down functions on outputs.
+Warning:  29 unlinked power cell(s) with no power down function on an ff or latch.
+        Use 'report_libraries -defects all' for more details.
+**************************************************
+
+Top design successfully set to 'i:/WORK/spi_controller_core'
+Implementation design set to 'i:/WORK/spi_controller_core'
+1
+match
+Reference design is 'r:/WORK/spi_controller_core'
+Implementation design is 'i:/WORK/spi_controller_core'
+Status:  Checking designs...
+    Warning: 0 (2) undriven nets found in reference (implementation) design; see formality1.log for list (FM-399)
+Status:  Building verification models...
+Status:  Processing Guide Commands...
+    SVF BEGIN: Timestamp: Cpu: 0.000h, Wall: 0.003h, Mem: 1.057G, Current time: Fri Oct 16 00:56:17 2026
+    SVF END: Timestamp: Cpu: 0.000h, Wall: 0.004h, Mem: 1.063G, Current time: Fri Oct 16 00:56:19 2026
+
+***************************** Guidance Summary *****************************
+                                         Status
+Command                 Accepted   Rejected  Unsupported  Unprocessed  Total
+----------------------------------------------------------------------------
+architecture_netlist:          1          0          0          0          1
+boundary            :          1          0          0          0          1
+boundary_netlist    :          1          0          0          0          1
+change_names        :          5          0          0          0          5
+constant            :          2          0          0          0          2
+datapath            :          1          0          0          0          1
+environment         :          4          0          0          0          4
+merge               :          1          0          0          0          1
+replace             :          1          0          0          0          1
+uniquify            :          1          0          0          0          1
+----------------------------------------------------------------------------
+Total               :         18          0          0          0         18
+
+
+Note: No guide_hier_map commands were found in the SVF. It is
+      important to enable guide_hier_map generation in
+      Design Compiler to avoid SVF rejections that can cause
+      aborted/failing points or long run times during verification.
+      In Design Compiler the recommended methodology uses variable
+      hdlin_enable_hier_map and command set_verification_top.
+
+SVF files read:
+      /proj/project/workarea/user37/spi_controller/output/spi_controller_core.svf
+
+SVF files produced:
+  /proj/project/workarea/user37/spi_controller/formal/formality1_svf/
+    svf.txt
+****************************************************************************
+
+Status:  Matching...
+    
+*********************************** Matching Results ***********************************    
+ 207 Compare points matched by name    
+ 0 Compare points matched by signature analysis    
+ 0 Compare points matched by topology    
+ 57 Matched primary inputs, black-box outputs    
+ 0(0) Unmatched reference(implementation) compare points    
+ 0(0) Unmatched reference(implementation) primary inputs, black-box outputs    
+ 3(0) Unmatched reference(implementation) unread points    
+****************************************************************************************
+
+1
+report_matched_points
+**************************************************
+Report         : matched_points
+
+Reference      : r:/WORK/spi_controller_core
+Implementation : i:/WORK/spi_controller_core
+Version        : V-2023.12-SP3
+Date           : Fri Oct 16 00:56:23 2026
+**************************************************
+
+264 Matched points:
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[5]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[5]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[6]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[6]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[7]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/active_clk_div_reg[7]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/bit_cnt_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/bit_cnt_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/bit_cnt_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/bit_cnt_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/bit_cnt_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/bit_cnt_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/bit_cnt_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/bit_cnt_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/busy_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/busy_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/cs_hold_active_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/cs_hold_active_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/cs_hold_cnt_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/cs_hold_cnt_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/cs_hold_cnt_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/cs_hold_cnt_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/cs_hold_cnt_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/cs_hold_cnt_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/cs_hold_cnt_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/cs_hold_cnt_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/cs_hold_cnt_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/cs_hold_cnt_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/cs_n_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/cs_n_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/done_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/done_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/mosi_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/mosi_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[10]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[10]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[11]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[11]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[12]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[12]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[13]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[13]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[14]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[14]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[15]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[15]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[5]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[5]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[6]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[6]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[7]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[7]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[8]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[8]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_data_reg[9]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_data_reg[9]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[10]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[10]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[11]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[11]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[12]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[12]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[13]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[13]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[14]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[14]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[15]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[15]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[5]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[5]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[6]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[6]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[7]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[7]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[8]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[8]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[9]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/rx_shift_reg_reg[9]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/spi_clk_d_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/spi_clk_d_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/spi_clk_en_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/spi_clk_en_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[10]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[10]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[11]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[11]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[12]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[12]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[13]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[13]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[14]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[14]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[5]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[5]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[6]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[6]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[7]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[7]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[8]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[8]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[9]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/tx_shift_reg_reg[9]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[5]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[5]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[6]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[6]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[7]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/div_cnt_reg[7]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/spi_clk_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_master/u_spi_clk_gen/spi_clk_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[5]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[5]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[6]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[6]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[7]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_clk_div_reg[7]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_master_en_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_master_en_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_start_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_start_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[10]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[10]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[11]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[11]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[12]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[12]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[13]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[13]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[14]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[14]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[15]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[15]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[5]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[5]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[6]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[6]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[7]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[7]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[8]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[8]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[9]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_regs/reg_tx_data_reg[9]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/bit_cnt_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/bit_cnt_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/bit_cnt_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/bit_cnt_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/bit_cnt_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/bit_cnt_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/bit_cnt_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/bit_cnt_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/cs_n_sync_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/cs_n_sync_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/cs_n_sync_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/cs_n_sync_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/cs_n_sync_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/cs_n_sync_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/miso_oe_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/miso_oe_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/miso_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/miso_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/mosi_sync_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/mosi_sync_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/mosi_sync_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/mosi_sync_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[10]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[10]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[11]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[11]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[12]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[12]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[13]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[13]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[14]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[14]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[15]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[15]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[5]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[5]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[6]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[6]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[7]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[7]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[8]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[8]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[9]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_data_reg[9]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[10]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[10]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[11]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[11]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[12]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[12]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[13]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[13]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[14]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[14]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[5]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[5]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[6]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[6]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[7]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[7]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[8]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[8]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[9]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_shift_reg_reg[9]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/rx_valid_reg
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/rx_valid_reg
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/sclk_sync_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/sclk_sync_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/sclk_sync_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/sclk_sync_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/sclk_sync_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/sclk_sync_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[0]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[0]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[10]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[10]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[11]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[11]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[12]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[12]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[13]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[13]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[14]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[14]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[1]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[1]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[2]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[2]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[3]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[3]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[4]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[4]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[5]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[5]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[6]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[6]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[7]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[7]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[8]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[8]
+
+  Ref  DFF        Name(Last) r:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[9]
+  Impl DFF        Name(Last) i:/WORK/spi_controller_core/u_spi_slave/tx_shift_reg_reg[9]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[0]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[0]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[10]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[10]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[11]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[11]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[12]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[12]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[13]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[13]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[14]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[14]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[15]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[15]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[16]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[16]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[17]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[17]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[18]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[18]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[19]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[19]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[1]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[1]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[20]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[20]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[21]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[21]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[22]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[22]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[23]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[23]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[24]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[24]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[25]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[25]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[26]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[26]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[27]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[27]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[28]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[28]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[29]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[29]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[2]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[2]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[30]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[30]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[31]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[31]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[3]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[3]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[4]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[4]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[5]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[5]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[6]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[6]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[7]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[7]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[8]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[8]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/paddr[9]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/paddr[9]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pclk
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pclk
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/penable
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/penable
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[0]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[0]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[10]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[10]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[11]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[11]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[12]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[12]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[13]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[13]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[14]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[14]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[15]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[15]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[16]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[16]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[17]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[17]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[18]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[18]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[19]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[19]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[1]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[1]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[20]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[20]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[21]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[21]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[22]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[22]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[23]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[23]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[24]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[24]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[25]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[25]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[26]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[26]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[27]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[27]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[28]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[28]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[29]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[29]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[2]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[2]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[30]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[30]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[31]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[31]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[3]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[3]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[4]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[4]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[5]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[5]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[6]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[6]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[7]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[7]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[8]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[8]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/prdata[9]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/prdata[9]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pready
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pready
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/presetn
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/presetn
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/psel
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/psel
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pslverr
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pslverr
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[0]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[0]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[10]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[10]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[11]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[11]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[12]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[12]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[13]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[13]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[14]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[14]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[15]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[15]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[1]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[1]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[2]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[2]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[3]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[3]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[4]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[4]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[5]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[5]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[6]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[6]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[7]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[7]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[8]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[8]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwdata[9]
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwdata[9]
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/pwrite
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/pwrite
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/spi_cs_n_i
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/spi_cs_n_i
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/spi_cs_n_o
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/spi_cs_n_o
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/spi_master_oe
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/spi_master_oe
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/spi_miso_i
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/spi_miso_i
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/spi_miso_o
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/spi_miso_o
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/spi_miso_oe
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/spi_miso_oe
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/spi_mosi_i
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/spi_mosi_i
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/spi_mosi_o
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/spi_mosi_o
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/spi_sclk_i
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/spi_sclk_i
+
+  Ref  Port       Name(Last) r:/WORK/spi_controller_core/spi_sclk_o
+  Impl Port       Name(Last) i:/WORK/spi_controller_core/spi_sclk_o
+
+ [BBNet: multiply-driven net
+  BBox:  black-box
+  BBPin: black-box pin
+  Block: hierarchical block
+  BlPin: hierarchical block pin
+  Cut:   cut-point
+  DFF:   non-constant DFF register
+  DFF0:  constant 0 DFF register
+  DFF1:  constant 1 DFF register
+  DFFX:  constant X DFF register
+  DFF0X: constrained 0X DFF register
+  DFF1X: constrained 1X DFF register
+  LAT:   non-constant latch register
+  LAT0:  constant 0 latch register
+  LAT1:  constant 1 latch register
+  LATX:  constant X latch register
+  LAT0X: constrained 0X latch register
+  LAT1X: constrained 1X latch register
+  LATCG: clock-gating latch register
+  TLA:   transparent latch register
+  TLA0X: transparent constrained 0X latch register
+  TLA1X: transparent constrained 1X latch register
+  Loop:  cycle break point
+  Net:   matchable net
+  Port:  primary (top-level) port
+  Und:   undriven signal cut-point
+  Unk:   unknown signal cut-point
+
+  Func:  matched by function
+  Name:  matched by name
+  Topo:  matched by topology
+  User:  matched by user
+
+  Last:  matched during most recent matching]
+
+1
+report_unmatched_points
+**************************************************
+Report         : unmatched_points
+
+Reference      : r:/WORK/spi_controller_core
+Implementation : i:/WORK/spi_controller_core
+Version        : V-2023.12-SP3
+Date           : Fri Oct 16 00:56:23 2026
+**************************************************
+
+No unmatched points.
+
+1
+verify
+Reference design is 'r:/WORK/spi_controller_core'
+Implementation design is 'i:/WORK/spi_controller_core'
+    
+*********************************** Matching Results ***********************************    
+ 207 Compare points matched by name    
+ 0 Compare points matched by signature analysis    
+ 0 Compare points matched by topology    
+ 57 Matched primary inputs, black-box outputs    
+ 0(0) Unmatched reference(implementation) compare points    
+ 0(0) Unmatched reference(implementation) primary inputs, black-box outputs    
+ 3(0) Unmatched reference(implementation) unread points    
+****************************************************************************************
+
+Status:  Verifying...
+
+***************************** Synopsys Auto Setup Summary ******************************
+
+!!! Synopsys Auto Setup Mode was enabled. !!!
+!!! Verification results are valid assuming the following setup constraints: !!!
+
+### RTL Interpretation Setup
+   set hdlin_ignore_parallel_case false
+   set hdlin_ignore_full_case false
+   set hdlin_error_on_mismatch_message false
+   set hdlin_ignore_embedded_configuration true
+
+### Undriven Signal Handling Setup
+   set verification_set_undriven_signals synthesis
+
+### Test Logic Setup
+   set verification_verify_directly_undriven_output false
+   For details see report_dont_verify_points and report_constants
+
+For further details on Synopsys Auto Setup Mode: Type man synopsys_auto_setup
+****************************************************************************************
+
+
+********************************* Verification Results *********************************
+Verification SUCCEEDED
+   ATTENTION: synopsys_auto_setup mode was enabled.
+              See Synopsys Auto Setup Summary for details.
+----------------------------------------------------------
+ Reference design: r:/WORK/spi_controller_core
+ Implementation design: i:/WORK/spi_controller_core
+ 207 Passing compare points
+----------------------------------------------------------------------------------------
+Matched Compare Points     BBPin    Loop   BBNet     Cut    Port     DFF     LAT   TOTAL
+----------------------------------------------------------------------------------------
+Passing (equivalent)           0       0       0       0      40     167       0     207
+Failing (not equivalent)       0       0       0       0       0       0       0       0
+****************************************************************************************
+1
+report_failing_points
+**************************************************
+Report         : failing_points
+
+Reference      : r:/WORK/spi_controller_core
+Implementation : i:/WORK/spi_controller_core
+Version        : V-2023.12-SP3
+Date           : Fri Oct 16 00:56:23 2026
+**************************************************
+
+No failing compare points.
+
+1
+report_aborted_points
+**************************************************
+Report         : aborted_points
+
+Reference      : r:/WORK/spi_controller_core
+Implementation : i:/WORK/spi_controller_core
+Version        : V-2023.12-SP3
+Date           : Fri Oct 16 00:56:23 2026
+**************************************************
+
+No aborted compare points.
+
+1
+1
+fm_shell (verify)> 
