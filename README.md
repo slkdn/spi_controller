@@ -14,9 +14,7 @@
 | 功耗 | 210.98 µW（dynamic 186.31 + leakage 24.68），综合前 low-effort 估算 | `reports/power.rpt` |
 | 形式验证 | `Verification SUCCEEDED`，207 个比较点全部通过 | `formal/formality.log` |
 
-> 回归与综合均需 Linux EDA 环境（VCS / Verdi / DC / Formality）。本次修复是在
-> Windows 侧完成的静态修改，未在本机重跑；上面的数字来自 2026-10-19 的
-> 回归和 2026-10-16 的综合报告。
+> 回归与综合均需 Linux EDA 环境（VCS / Verdi / DC / Formality）。
 
 ## 目录结构
 
