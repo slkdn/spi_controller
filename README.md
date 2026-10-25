@@ -104,20 +104,6 @@ cd formal
    避免与当前 16-bit core 产物混淆。
 4. `sim/verdiLog/.verdi_onesearch_elabdir` 递归缓存已移至
    `archive/verdi_onesearch_cache/`，避免递归遍历报错。
-5. `doc/spi_controller.pptx` 已按 16-bit RTL 和当前报告全面更新（含演讲者备注）。
-   英文 3 分钟版已单独生成：`doc/spi_controller_english_3min.pptx`，
-   PDF 为 `doc/spi_controller_english_3min.pdf`，逐页讲稿见
-   `doc/spi_controller_english_3min_script.md`（8 页，约 3 分钟）。
-
-## 英文 3 分钟汇报版
-
-- `doc/spi_controller_english_3min.pptx` — 8 页 16:9 英文讲稿，演讲者备注内嵌
-- `doc/spi_controller_english_3min.pdf` — 同版 PDF，便于分发
-- `doc/spi_controller_english_3min_script.md` — 逐页讲稿、时间分配与讲解提示
-  （约 460 词，正常语速约 3 分钟）
-
-页面顺序：标题 → 设计概览 → 架构 → 寄存器 → Mode 0 时序 → 验证 →
-综合结果 → 总结。
 
 ## 待确认事项
 
