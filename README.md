@@ -26,8 +26,6 @@ output/     当前 16-bit core 的网表、综合后 SDC、Formality SVF
 reports/    面积 / 时序 / 功耗报告
 formal/     Formality 脚本与日志
 coverage/   回归日志与 URG 覆盖率报告（coverage_scopes/ 为各测试的层次过滤）
-doc/        中文完整版 PPT、英文 3 分钟版 PPT/PDF 及讲稿（含旧 8-bit 备份）
-archive/    已淘汰的 8-bit 网表/SDC 与 Verdi 缓存，说明见 archive/README.md
 ```
 
 ## RTL 模块
